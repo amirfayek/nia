@@ -37,10 +37,3 @@ exports.register = function(socket) {
   });
 }
 
-function onSave(socket, doc, cb) {
-  socket.emit('chat:save', doc);
-}
-
-function onRemove(socket, doc, cb) {
-  socket.emit('chat:remove', doc);
-}

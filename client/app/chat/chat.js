@@ -3,7 +3,7 @@
 angular.module('niaApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/chat/:id', {
+      .when('/chat/:chat_id', {
         templateUrl: 'app/chat/chat.html',
         controller: 'ChatCtrl'
       });
