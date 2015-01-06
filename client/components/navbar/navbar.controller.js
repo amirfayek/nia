@@ -5,6 +5,9 @@ angular.module('niaApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },{
+      'title': 'Movies',
+      'link': '/movie'
     }];
 
     $scope.isCollapsed = true;
