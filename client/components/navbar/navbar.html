@@ -1,4 +1,17 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
+
+
+  <div class="header">
+    <ul class="nav nav-pills pull-right font-override">
+      <li ng-class="{ active: isActive('/') }"><a ng-href="/">Home</a></li>
+      <li ng-class="{ active: isActive('/movies') }" ng-show="user.id"><a ng-href="/movies">Movies</a></li>
+      <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
+      <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
+    </ul>
+    <h3 class="text-logo">NIA</h3>
+</div>
+
+
+<!-- <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -27,3 +40,4 @@
     </div>
   </div>
 </div>
+ -->

@@ -1,6 +1,11 @@
+
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
 <center>
-    <h2>Movie Quiz</h2>
-    <select>
+  <h2>Movie Mood</h2><br>
+  <div class="col-md-6 col-md-offset-3">
+    <select class="form-control">
       <option>Select a Genre</option>
       <option value="comedy">Comedy</option>
       <option value="horror">Horror</option>
@@ -16,38 +21,45 @@
       <option value="scifi">Science Fiction</option>
       <option value="crime">Crime</option>
       <option value="biography">Biography</option>
-    </select>
+    </select><br><br>
 
-    <select>
-      <option value=""></option>
-      <option value=""></option>
-      <option value=""></option>
-      <option value=""></option>
-    </select>
+    <select class="form-control">
+      <option>Who are you watching with?</option>
+      <option value="alone">Alone</option>
+      <option value="friends">Friends</option>
+      <option value="party">Party</option>
+      <option value="so">Significant Other</option>
+      <option value="family">Family</option>
+    </select><br><br>
 
-    <select>
+    <select class="form-control">
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
-    </select>
+    </select><br><br>
 
 
-    <select>
+    <select class="form-control">
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
-    </select>
+    </select><br><br>
 
-    <select>
+    <select class="form-control">
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
       <option value=""></option>
-    </select>
+    </select><br><br>
 
-<button>Submit</button>
+    <button>Find your Movie</button>
 
-  </div>
 </center>
+
+
+
+
+
+<div ng-include="'components/footer/footer.html'"></div>
