@@ -15,15 +15,21 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+      <link rel="stylesheet" type="text/css" href="assets/stylesheets/flexslider.css">
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
+    <link href='http://fonts.googleapis.com/css?family=Lora|Poiret+One|Roboto:400,100italic,300|Roboto+Slab:400,100|Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
       <link rel="stylesheet" href="app/account/login/login.css">
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/movie/movie.css">
+      <link rel="stylesheet" href="app/moviequiz/moviequiz.css">
+      <link rel="stylesheet" href="app/movieshow/movieshow.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <!-- endinjector -->
     <!-- endbuild -->
@@ -34,7 +40,22 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+  <div class="container">
+        <div class="header">
+          <ul class="nav nav-pills pull-right">
+            <li ng-class="{ active: isActive('/') }"><a ng-href="/">Home</a></li>
+            <li ng-class="{ active: isActive('/movies') }" ng-show="user.id"><a ng-href="/movies">Movies</a></li>
+            <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
+            <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
+          </ul>
+          <h3 class="text-muted">NIA</h3>
+  </div>
     <div ng-view=""></div>
+
+  <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Nia team</p>
+      </div>
+  </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -64,6 +85,8 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
+      <script type="text/javascript" src="/assets/js/jquery.flexslider.js"></script>
+
     <!-- endbuild -->
 
         <!-- build:js({.tmp,client}) app/app.js -->
@@ -77,6 +100,12 @@
           <script src="app/admin/admin.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/movie/movie.controller.js"></script>
+          <script src="app/movie/movie.js"></script>
+          <script src="app/moviequiz/moviequiz.controller.js"></script>
+          <script src="app/moviequiz/moviequiz.js"></script>
+          <script src="app/movieshow/movieshow.controller.js"></script>
+          <script src="app/movieshow/movieshow.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/modal/modal.service.js"></script>
