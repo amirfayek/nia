@@ -8,9 +8,6 @@ var Movie = require('./movie.model');
 
 var canistreamit = require('../../components/canistreamit')
 
-
-var canistreamit = require('../../components/canistreamit');
-
 var request = require('request');
 
 // Get list of movies
