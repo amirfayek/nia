@@ -3,9 +3,13 @@
 var _ = require('lodash');
 
 // var Movie = require('./movie.model');
-=======
+
 var Movie = require('./movie.model');
+
 var canistreamit = require('../../components/canistreamit')
+
+
+var canistreamit = require('../../components/canistreamit');
 
 var request = require('request');
 
@@ -34,7 +38,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   var movieNameHost = 'http://www.canistream.it/services/search?movieName=' + req.params.movieName;
   // var movie
-  request(hostname).pipe(res)
+  request(movieNameHost).pipe(res);
 
   // Movie.findById(req.params.id, function (err, movie) {
   //   if(err) { return handleError(res, err); }

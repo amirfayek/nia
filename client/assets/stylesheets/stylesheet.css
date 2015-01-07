@@ -20,6 +20,7 @@
 }
 
 .header-home-h5 h5 {
+  margin-top: 35%;
   color: white !important;
   font-family: 'Poiret One';
   font-weight: 300;
@@ -70,13 +71,18 @@ h4, h5, h3, h2, h1, h6, p {
   height: 25%;
 }
 
+.font-default {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
 /* VIDEO TEXT */
 #video {
   position: fixed;
   top: 0px;
   left: 0px;
   min-width: 100%;
-  min-height: 25%;
+  min-height: 100%;
   height: auto;
   z-index: -1000;
   overflow: hidden;
