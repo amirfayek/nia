@@ -1,12 +1,58 @@
-<div class="header">
-    <ul class="nav nav-pills pull-right font-override">
-      <li ng-class="{ active: isActive('/') }"><a ng-href="/">Home</a></li>
-      <li ng-class="{ active: isActive('/movies') }" ng-show="user.id"><a ng-href="/movies">Movies</a></li>
+<nav class="navbar navbar-custom navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">NIA</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li ng-class="{ active: isActive('/') }"><a ng-href="/home/">Home</a></li>
+          <li ng-class="{ active: isActive('/movie') }" ng-show="user.id"><a ng-href="/movies">Movies</a></li>
+          <li ng-class="{ active: isActive('/moviequiz') }" ng-show="user.id"><a ng-href="/movies">Quiz</a></li>
+          <li ng-class="{ active: isActive('/moviegenius') }" ng-show="user.id"><a ng-href="/moviegenius">Genius</a></li>
+          <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
+          <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Current Movie</a></li>
+            <li><a href="#">Friends</a></li>
+            <li class="divider"></li>
+            <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<br><br><br>
+
+<!-- <div class="header">
+    <ul class="nav navbar-custom nav-pills pull-right">
+
+    </ul>
+    <h3 class="text-logo">NIA</h3>
+</div>
+ -->
+<!-- <div class="header">
+    <ul class="nav navbar-custom nav-pills pull-right">
+      <li ng-class="{ active: isActive('/') }"><a ng-href="/home/">Home</a></li>
+      <li ng-class="{ active: isActive('/movie') }" ng-show="user.id"><a ng-href="/movies">Movies</a></li>
+      <li ng-class="{ active: isActive('/moviequiz') }" ng-show="user.id"><a ng-href="/movies">Quiz</a></li>
+      <li ng-class="{ active: isActive('/moviegenius') }" ng-show="user.id"><a ng-href="/moviegenius">Genius</a></li>
       <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
       <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
     </ul>
     <h3 class="text-logo">NIA</h3>
-</div>
+</div> -->
+
 
 
 <!-- <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
