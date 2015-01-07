@@ -1,7 +1,8 @@
 'use strict';
 
 var _ = require('lodash');
-// var Movie = require('./movie.model');
+var Movie = require('./movie.model');
+var canistreamit = require('../../components/canistreamit')
 var request = require('request');
 
 // Get list of movies
@@ -30,11 +31,15 @@ exports.index = function(req, res) {
 
 // Get a single movie
 exports.show = function(req, res) {
-  Movie.findById(req.params.id, function (err, movie) {
-    if(err) { return handleError(res, err); }
-    if(!movie) { return res.send(404); }
-    return res.json(movie);
-  });
+  var movieNameHost = 'http://www.canistream.it/services/search?movieName=' + req.params.movieName;
+  // var movie
+  request(hostname).pipe(res)
+
+  // Movie.findById(req.params.id, function (err, movie) {
+  //   if(err) { return handleError(res, err); }
+  //   if(!movie) { return res.send(404); }
+  //   return res.json(movie);
+  // });
 };
 
 // Creates a new movie in the DB.

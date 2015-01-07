@@ -9,7 +9,7 @@ angular.module('niaApp')
         $scope.movies.push(value);
       });
       $scope.isVisible = function(name){
-        return true;// return false to hide this artist's albums
+        return true;
       };
     });
   });
