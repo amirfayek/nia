@@ -15,8 +15,11 @@ exports.index = function(req, res) {
 
 // Get a single movie
 exports.show = function(req, res) {
-  var movieNameHost = 'http://www.canistream.it/services/search?movieName=' + req.params.movieName;
+  console.log(req.params.id)
+
+  var movieNameHost = 'http://www.canistream.it/services/search?movieName=' + req.params.id;
   // var movie
+  console.log(movieNameHost);
   request(movieNameHost).pipe(res);
 
   // Movie.findById(req.params.id, function (err, movie) {
