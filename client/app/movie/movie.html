@@ -1,10 +1,11 @@
+
 <script>
-  $(window).load(function() {
+  $(document).ready(function() {
     $('.flexslider').flexslider({
       animation: "slide",
       animationLoop: true,
       smoothHeight: true,
-      itemWidth: 160,
+      itemWidth: 150,
       slideshow: false,
       itemMargin: 5,
       pauseOnAction: true,
@@ -14,8 +15,8 @@
   });
 </script>
 
-<!-- <button type="button" class="btn btn-warning" data-toggle="popover" data-trigger="hover" data-placement="left" title="Popover title" data-content="Popover on left.">Popover on left</button>
- -->
+
+<div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="flexslider">
   <h5>Top Movies</h5>
@@ -71,8 +72,8 @@
   </ul>
 </div>
 
-  <h5>Popular in your Area</h5>
   <div class="flexslider">
+  <h5>Popular in your Area</h5>
   <ul class="slides">
     <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></a></li>
     <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
@@ -107,11 +108,7 @@
   </ul>
 </div>
 
+<div ng-include="'components/footer/footer.html'"></div>
 
-<!-- UNCOMMENT THIS TO GET POPOVER WORKING
-<script type="text/javascript">
-  $(window).load(function(){
-      $('[data-toggle="popover"]').popover();
-  });
-</script>
--->
+
+
