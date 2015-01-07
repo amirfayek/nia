@@ -19,19 +19,8 @@
 
 <div class="flexslider">
   <h5>Top Movies</h5>
-  <ul class="slides">
-    <li><a href="#" ><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1"/></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
-    <li><a href="#"><img src="http://t2.gstatic.com/images?q=tbn:ANd9GcScyc7xaIxy-9F5scjqh2BWmbQoG4JQhNl60cwgVDcF__mfg0l1" /></a></li>
+  <ul class="slides" ng-controller="MovieCtrl">
+    <li ng-repeat="movie in movies"><a href="#"><img src="{{movie.posters.detailed}}" width="150" height="150"></a></li>
   </ul>
 </div>
 
@@ -115,3 +104,12 @@
   });
 </script>
 -->
+
+<!-- <div ng-controller="MovieCtrl">
+    <ul>
+        <li ng-repeat="movie in movies"><img src="{{movie.posters.thumbnail}}"></li>
+    </ul>
+    <ul ng-repeat="artist in artists" ng-show="isVisible(artist.name)">
+        <li ng-repeat="album in artist.albums">{{album.title}}</li>
+    </ul>
+</div> -->

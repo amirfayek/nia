@@ -22,7 +22,10 @@ var request = require('request');
 // };
 
 exports.index = function(req, res) {
-  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r').pipe(res)
+  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+    }
+  }).pipe(res)
 };
 
 // Get a single movie
