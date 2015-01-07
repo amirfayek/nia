@@ -1,18 +1,17 @@
 
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-
-  <div ng-repeat="movie in movies">
 <!-- <div class="col-md-6 col-md-offset-3"> -->
 
-
     <center>
-      <h3> <strong>Generate a random movie based on your favorites</strong></h3><br>
+      <h3> <strong>Generate random movies based on your favorites</strong></h3><br>
       <a href="javascript:location.reload(true)">
       <button class="btn btn-default btn-md font-default">Randomize</button></a>
 
       <h3>Your Movie Suggestion:</h3>
     </center>
+
+  <div ng-repeat="movie in movies">
     <div class="col-md-3 col-md-offset-2"><br>
        <img src="{{movie.image}}"><br><br>
      </div>
