@@ -24,3 +24,5 @@ angular.module('niaApp')
   });
 
 
+// angular.module('niaApp', ['angular-flexslider']);
+
