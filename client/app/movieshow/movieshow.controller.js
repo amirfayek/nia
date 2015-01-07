@@ -4,7 +4,16 @@ angular.module('niaApp')
   .controller('MovieshowCtrl', function ($scope, $http, $routeParams) {
     // var movieName = $routeParams.movieName;
     // console.log(movieName);
-    $http.get('http://localhost:9000/api/movies/batman').
+    // console.log($routeParams);
+    var movieName = $routeParams.moviename.toLowerCase();
+    // console.log(movieName);
+    var uri = "http://localhost:9000/api/movies/" + movieName;
+
+    console.log("this is the uri:")
+    console.log(uri);
+
+
+    $http.get(uri).
       success(function(data, status, headers, config) {
         console.log(data)
         $scope.movies = data;
