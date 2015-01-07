@@ -82,7 +82,7 @@ h4, h5, h3, h2, h1, h6, p {
   top: 0px;
   left: 0px;
   min-width: 100%;
-  min-height: 25%;
+  min-height: 100%;
   height: auto;
   z-index: -1000;
   overflow: hidden;
