@@ -27,6 +27,7 @@ io.sockets.on('connection', function (socket) {
 });
 
 console.log('Listening on port 8000...')
+console.log(User.db)
 
 exports.register = function(socket) {
   Chat.schema.post('save', function (doc) {
