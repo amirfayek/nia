@@ -18,12 +18,16 @@
 
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="flexslider">
-  <h5>Top Movies</h5>
+
+  <h5>Fav Movies</h5>
   <ul class="slides" ng-controller="MovieCtrl">
-    <li ng-repeat="movie in movies"><a href="#"><img src="{{movie.posters.detailed}}" width="150" height="150"></a></li>
+    <li ng-repeat="movie in movies" id="{{movie.title}}"><a href="/movies/{{movie.title}}"><img src="{{movie.posters.detailed}}"></a></li>
   </ul>
-</div>
+  <h5>Top Rentals</h5>
+  <ul class="slides" ng-controller="MovieCtrl">
+    <li ng-repeat="movie in topRentals" id="{{movie.title}}"><a href="/movies/{{movie.title}}"><img src="{{movie.posters.detailed}}"></a></li>
+  </ul>
+
 
 <div class="flexslider">
   <h5>Friends Are Watching</h5>
