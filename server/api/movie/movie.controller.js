@@ -1,17 +1,35 @@
 'use strict';
 
 var _ = require('lodash');
+
+// var Movie = require('./movie.model');
+
 var Movie = require('./movie.model');
-var canistreamit = require('../../components/canistreamit');
+var canistreamit = require('../../components/canistreamit')
 var request = require('request');
+var rottenTomatoes = require('../../components/rottentomatoes')
+
+exports.index = function(req, res) {
+  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r').pipe(res)
+};
 
 // Get list of movies
-exports.index = function(req, res) {
-  Movie.find(function (err, movies) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, movies);
-  });
-};
+// exports.index = function(req, res) {
+//   Movie.find(function (err, movies) {
+//     if(err) { return handleError(res, err); }
+//     return res.json(200, movies);
+//   });
+// };
+
+// Get list of movies
+// exports.index = function(req, res) {
+//   request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r', function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       var movie = JSON.parse(body)
+//     }
+//   }).pipe('/api/movies')
+// };
+
 
 // Get a single movie
 exports.show = function(req, res) {
