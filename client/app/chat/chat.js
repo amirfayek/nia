@@ -7,4 +7,4 @@ angular.module('niaApp')
         templateUrl: 'app/chat/chat.html',
         controller: 'ChatCtrl'
       });
-  });
+});

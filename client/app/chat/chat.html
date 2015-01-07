@@ -1,14 +1,13 @@
-<div class="col-md-12">
-This is the chat view.
-</div>
 <script>
       var socket = io("http://localhost:8000");
 
       socket.on('load', function (users, messages) {
+        console.log("connect to chat")
+        console.log(users)
+        console.log(users[0].name)
         var userList = users.map(function (user) {
-          return "<li>" + user + "</li>";
+          return "<li>" + user.name + "</li>";
         });
-
         $("ul.users").html(userList);
 
 
@@ -29,6 +28,11 @@ This is the chat view.
       socket.on('said', function (message) {
         $("ul.messages").append("<li>" + message + "</li>");
       });
+   
+
+
+
+      
     </script>
     <script>
       $(function (){
@@ -51,7 +55,8 @@ This is the chat view.
     </script>
   </head>
   <body>
-    <h1>Chat</h1>
+    <h1>Chat <span id="spnTitle"></span></h1>
+
 
     <h3>Users in Room</h3>
     <ul class="users"></ul>
