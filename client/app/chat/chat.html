@@ -4,39 +4,34 @@
       socket.on('load', function (users, messages) {
         console.log("connect to chat")
         console.log(users)
-        console.log(users[0].name)
         var userList = users.map(function (user) {
           return "<li>" + user.name + "</li>";
         });
-        $("ul.users").html(userList);
+        $("ul#users").html(userList);
 
 
         var messageList = messages.map(function (message) {
           return "<li>" + message + "</li>";
         });
 
-        $("ul.messages").html(messageList);
+        $("ul#messages").html(messageList);
       });
 
       socket.on('signed-in', function (name) {
-        $("ul.users").append("<li>" + name + "</li>");
-
-        $("form.sign-in").hide();
-        $("div.chat").show();
+        $("ul#users").append("<li>" + name + "</li>");
+        window.name = name;
+        $("form#sign-in").hide();
+        $("div#chat").show();
       });
 
       socket.on('said', function (message) {
-        $("ul.messages").append("<li>" + message + "</li>");
+        $("ul#messages").append("<li>" + window.name + " sez "+ message + "</li>");
       });
-   
 
-
-
-      
     </script>
     <script>
       $(function (){
-        $("form.sign-in").submit(function (e) {
+        $("form#sign-in").submit(function (e) {
           e.preventDefault();
 
           socket.emit('sign-in', $(this).find("input").val());
@@ -44,7 +39,7 @@
           $(this).find("input").val('');
         });
 
-        $("form.new-message").submit(function (e) {
+        $("form#new-message").submit(function (e) {
           e.preventDefault();
 
           socket.emit('say', $(this).find("input").val());
@@ -57,22 +52,38 @@
   <body>
     <h1>Chat <span id="spnTitle"></span></h1>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>Users in Room</h3>
+      <div>
+      <ul id="users" class="list-unstyled"></ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <h3>Users in Room</h3>
-    <ul class="users"></ul>
-
-    <form class="sign-in">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+    <form id="sign-in" class="form-control">
       <label>Nickname for chat</label>
-      <input />
-      <button type="submit">Submit</button>
+      <input class ="container-fluid"/>
+      <button class="btn" type="submit">Submit</button>
     </form>
+    </div>
+  </div>
+</div>
 
-    <div class="chat" style="display: none;">
-      <h3>Messages</h3>
-      <ul class="messages"></ul>
-      <form class="new-message">
-        <input />
+<div id="chat" class="container-fluid" style="display: none;">
+  <h3 class="text-logo">Messages</h3>
+      <div>
+        <ul id="messages" class="list-unstyled"></ul>
+      </div>
+      <form id="new-message" class="form-control container-fluid">
+      <input class ="container-fluid"/>
+       <button class="btn" type="submit">Submit</button>
       </form>
     </div>
-  </body>
-</html>
+</body>
+
