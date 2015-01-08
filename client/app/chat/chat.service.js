@@ -2,7 +2,7 @@ angular.module('niaApp')
   .factory('ChatService', function ChatService($rootScope, Auth) {
     var users = [];
     //make these js objects
-    var messages = ["here", "is", "strings"];
+    var messages = [];
     var user = Auth.getCurrentUser();
     var socket = io("http://localhost:8000");
 
@@ -19,7 +19,7 @@ angular.module('niaApp')
     		socket.emit('say', user.name + ':' + message);
     	},
     	users: users,
-    	user: user,
+    	user: user.name,
     	messages: messages
     }
 });
