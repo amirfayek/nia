@@ -9,9 +9,10 @@ angular.module('niaApp')
     // console.log(movieName);
     var uri = 'http://localhost:9000/api/movies/' + movieName;
 
+
     $http.get(uri).
       success(function(data, status, headers, config) {
-        console.log(data)
+        // console.log(data)
         $scope.movies = data;
       }).
       error(function(data, status, headers, config) {
