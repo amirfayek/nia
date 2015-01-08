@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var underscore = require('underscore');
 
 // var Movie = require('./movie.model');
 
@@ -30,36 +31,38 @@ exports.index = function(req, res) {
 //   }).pipe('/api/movies')
 // };
 
-
-// Get a single movie
 exports.show = function(req, res) {
-  var movieInfo = ''
-  var movieBasicInfo = canistreamit.searchByTitle(req.params.id)
-    .then(function(data){
-      console.log(data);
-      movieInfo += data;
-      console.log("HI")
-      var dataID = JSON.parse(data)[0]._id;
-      console.log("BYE")
-      return dataID;
-  }).then(function(id){
-    return canistreamit.searchByID(id)
-  }).then(function(data){
-      console.log(data);
-      movieInfo += data;
-  }).done(function() {
-    res.json(movieInfo);
-  });
-
-  // console.log(movie)
-  // console.log(movie['year'])
-  // var streaming_info = 
-  // Movie.findById(req.params.id, function (err, movie) {
-  //   if(err) { return handleError(res, err); }
-  //   if(!movie) { return res.send(404); }
-  //   return res.json(movie);
+  // original working function
+  // var movieBasicInfo = canistreamit.searchByTitle(req.params.id)
+  //   .then(function(data) {
+  //     return res.json(JSON.parse(data));
   // });
-};
+  
+  var id;
+  var movieInfo = {};
+  var partOne;
+  
+  var movieBasicInfo = 
+    canistreamit.searchByTitle(req.params.id)
+      .then(function(data) {
+        movieInfo = JSON.parse(data);
+        var dataID = movieInfo._id;        
+        return dataID;
+    }).then(function(id) {
+        return canistreamit.searchByID(id)
+    }).then(function(data) {
+        movieInfo = underscore.extend(movieInfo, JSON.parse(data));
+        console.log("PART TWO");
+        console.log(data);
+        return data;
+    }).done(function() {
+        // console.log("HI")
+        // console.log(movieInfo)
+        // console.log("BYE")
+        // console.log(movieInfo)
+        return res.json(movieInfo);
+    });
+  };
 
 
 exports.showMore = function(req, res) {
