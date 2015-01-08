@@ -41,16 +41,16 @@ exports.show = function(req, res) {
   //   .then(function(data) {
   //     return res.json(JSON.parse(data));
   // });
-  
+
   var id;
   var movieInfo = {};
   var partOne;
-  
-  var movieBasicInfo = 
+
+  var movieBasicInfo =
     canistreamit.searchByTitle(req.params.id)
       .then(function(data) {
-        movieInfo = JSON.parse(data);
-        var dataID = movieInfo._id;        
+        movieInfo = JSON.parse(data) [0 ];
+        var dataID = movieInfo._id;
         return dataID;
     }).then(function(id) {
         return canistreamit.searchByID(id)
