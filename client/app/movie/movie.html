@@ -1,4 +1,3 @@
-
 <script>
   $(document).ready(function() {
     $('.flexslider').flexslider({
@@ -16,7 +15,6 @@
 </script>
 
 <style>
-
   ul {
     list-style-type: none;
     float: left;
@@ -30,7 +28,6 @@
   .h4style h4 {
     margin-left: 1%;
   }
-
 </style>
 
 
@@ -38,6 +35,7 @@
    &nbsp; &nbsp; &nbsp;<h3>Featured Movies</h3>
   <div class="flexslider">
     <ul class="slides">
+      <li><a href="/movieshow?moviename=wolf of wall street"><img src="http://i.huffpost.com/gen/1589048/thumbs/o-WOLF-OF-WALL-STREET-MOVIE-facebook.jpg"></a></li>
       <li><a href="/movieshow?moviename=maleficient"><img src="http://www.thedailypedia.com/wp-content/uploads/2014/05/malef_domestic_ph.jpg"></a></li>
       <li><a href="/movieshow?moviename=the interview"><img src="http://i.huffpost.com/gen/2408052/thumbs/o-THE-INTERVIEW-MOVIE-POSTER-facebook.jpg"></a></li>
       <li><a href="/movieshow?moviename=horrible bosses"><img src="http://i.huffpost.com/gen/2324198/thumbs/o-HB2-facebook.jpg"></a></li>
@@ -49,7 +47,7 @@
 <div ng-controller="MovieCtrl">
   <ul ng-repeat="movie in movies">
     <center>
-    <li>
+    <li class="li-popover">
       <a href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
     </li>
   </center>
@@ -59,61 +57,12 @@
 <div ng-controller="MovieCtrl">
   <ul ng-repeat="movie in topRentals">
     <center>
-    <li>
+    <li class="li-popover">
       <a href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
     </li>
   </center>
   </ul>
 </div><br><br><br><br>
-
-
-
-
-
-<!--
-<div ng-controller="MovieCtrl">
-<h1> TEST</h1>
-  <flex-slider flex-slide="movie in movies track by $index">
-    <li>
-      <img ng-src="{{movie.posters.detailed}}" height="50" width="50">
-    </li>
-  </flex-slider>
-</div>
-
-
-
-
-
-<h5>Favorite Movies</h5>
-  <div class="flexslider">
-    <ul class="slides" ng-controller="MovieCtrl">
-      <li ng-repeat="movie in movies" id="{{movie.title}}">
-        <a href="/movieshow?moviename={{movie.title}}">
-          <img src="{{movie.posters.detailed}}"></a>
-      </li>
-    </ul>
-</div>
-  <h5>Top Rentals</h5>
-  <div class="flexslider">
-  <ul class="slides" ng-controller="MovieCtrl">
-    <li ng-repeat="movie in topRentals" id="{{movie.title}}">
-      <a href="/movieshow?moviename={{movie.title}}">
-        <img src="{{movie.posters.detailed}}"></a>
-     </li>
-  </ul>
-
- </div>
- <div ng-controller="MovieCtrl">
-    <ul>
-        <li ng-repeat="movie in movies"><img src="{{movie.posters.thumbnail}}"></li>
-    </ul>
-    <ul ng-repeat="artist in artists" ng-show="isVisible(artist.name)">
-        <li ng-repeat="album in artist.albums">{{album.title}}</li>
-    </ul>
-</div>
- -->
-
-
 
 <div ng-include="'components/footer/footer.html'"></div>
 
