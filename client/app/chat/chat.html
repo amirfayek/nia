@@ -1,61 +1,9 @@
 
 <div class="col-md-12">
-This is the chat view.
+This is the chat view. Hollar
 {{ getCurrentUser().name }}
 </div>
-
-<script>
-      var socket = io("http://localhost:8000");
-
-      socket.on('load', function (users, messages) {
-        console.log("connect to chat")
-        console.log(users)
-        var userList = users.map(function (user) {
-          return "<li>" + user.name + "</li>";
-        });
-        $("ul#users").html(userList);
-
-
-        var messageList = messages.map(function (message) {
-          return "<li>" + message + "</li>";
-        });
-
-        $("ul#messages").html(messageList);
-      });
-
-      socket.on('signed-in', function (name) {
-        $("ul#users").append("<li>" + name + "</li>");
-        window.name = name;
-        $("form#sign-in").hide();
-        $("div#chat").show();
-      });
-
-      socket.on('said', function (message) {
-        $("ul#messages").append("<li>" + window.name + " sez "+ message + "</li>");
-      });
-
-    </script>
-    <script>
-      $(function (){
-        $("form#sign-in").submit(function (e) {
-          e.preventDefault();
-
-          socket.emit('sign-in', $(this).find("input").val());
-
-          $(this).find("input").val('');
-        });
-
-        $("form#new-message").submit(function (e) {
-          e.preventDefault();
-
-          socket.emit('say', $(this).find("input").val());
-
-          $(this).find("input").val('');
-        });
-      });
-    </script>
-  </head>
-  <body>
+<body>
     <h1>Chat <span id="spnTitle"></span></h1>
 
 <div class="container-fluid">
@@ -69,25 +17,16 @@ This is the chat view.
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-    <form id="sign-in" class="form-control">
-      <label>Nickname for chat</label>
-      <input class ="container-fluid"/>
-      <button class="btn" type="submit">Submit</button>
-    </form>
-    </div>
-  </div>
-</div>
 
-<div id="chat" class="container-fluid" style="display: none;">
+<div id="chat" class="container-fluid">
   <h3 class="text-logo">Messages</h3>
       <div>
-        <ul id="messages" class="list-unstyled"></ul>
+        <ul id="messages" class="list-unstyled">
+          <li ng-repeat="message in messages"> {{message}} {{count}}  </li>
+        </ul>
       </div>
-      <form id="new-message" class="form-control container-fluid">
-      <input class ="container-fluid"/>
+      <form id="new-message" ng-submit="say()" class="form-control container-fluid">
+        <input ng-model="newMessage" class ="container-fluid"/>
        <button class="btn" type="submit">Submit</button>
       </form>
     </div>

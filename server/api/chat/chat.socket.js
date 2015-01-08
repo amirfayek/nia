@@ -32,6 +32,8 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('say', function (message) {
+    
+    console.log("saying", message);
     messages.push(message);
 
     io.sockets.emit('said', message);

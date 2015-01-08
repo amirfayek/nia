@@ -15,8 +15,8 @@
           <li ng-class="{ active: isActive('/moviegenius') }" ng-show="user.id"><a ng-href="/moviegenius">Genius</a></li>
           <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
           <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
-
-        <li class="dropdown">
+ -->
+       <!--  <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Profile</a></li>
@@ -30,7 +30,9 @@
     </div>
   </div>
 </nav>
+<<<<<<< HEAD
 <br><br><br> -->
+
 
 <!-- <div class="header">
     <ul class="nav navbar-custom nav-pills pull-right">
@@ -62,17 +64,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">NIA</a>
+      <a href="/movie" class="navbar-brand">NIA</a>
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/movie')}"><a href="/movie">Movies</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/moviegenius')}"><a href="/moviegenius">Movie Genius</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
