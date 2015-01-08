@@ -1,64 +1,52 @@
 
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<!-- <div class="col-md-6 col-md-offset-3"> -->
-
     <center>
-      <h3> <strong>Generate random movies based on your favorites</strong></h3><br>
+      <h3> <strong>Generate movies</strong></h3><br>
       <a href="javascript:location.reload(true)">
       <button class="btn btn-default btn-md font-default">Randomize</button></a>
 
       <h3>Your Movie Suggestion:</h3>
     </center>
-
   <div ng-repeat="movie in movies">
     <div class="col-md-3 col-md-offset-2"><br>
        <img src="{{movie.image}}"><br><br>
      </div>
 
-
     <div class="col-md-6"><br><br><br><br>
       <h2>{{movie.title}}</h2>
       <h4>{{movie.year}}</h4>
       <h5><strong>Rating: </strong>{{movie.rating}}</h5>
-      <h5><strong>Length: </strong>110 minutes </h5>
+      <h5><strong>Length: </strong>{{movie.length}} </h5>
       <h5><strong>Starring: </strong>{{movie.actors}} </h5>
-      <p><strong>Description: </strong>Yada yada yada yada Yada yada yada yada Yada yada yada yada Yada yada yada yada Yada yada yada yada Yada yada yada yada Yada yada yada yada Yada yada yada yada</p><br>
+      <p><strong>Description: </strong></p><br>
 
       <center>
         <button type="button" class="btn btn-default btn-md">
            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite
         </button>
             <br><br>
-          <h5><strong>Availability:</strong></h5>
+        <h5><strong>Availability:</strong></h5>
 
         <a class="hover-show" href="#">
             <img src="../assets/images/amazon.png" width="30"/>
             <img src="../assets/images/amazon-g.png" width="30"/>
         </a>
-
         <a class="hover-show" href="#">
             <img src="../assets/images/hulu.png" width="30" width="30"/>
             <img src="../assets/images/hulu-g.png" width="30" />
         </a>
-
-
         <a class="hover-show" href="#">
             <img src="../assets/images/itunes.png" width="30"/>
             <img src="../assets/images/itunes-g.png" width="30"/>
         </a>
-
         <a class="hover-show" href="#">
             <img src="../assets/images/netflix.png" width="30"/>
             <img src="../assets/images/netflix-g.png" width="30" />
-        </a>
-            <br><br><br>
+        </a><br><br><br>
         </center>
    </div>
   </div>
-
 </div>
-
-  <!-- button class="btn btn-default">Generate</button> -->
 
 <div ng-include="'components/footer/footer.html'"></div>
