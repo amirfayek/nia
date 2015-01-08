@@ -16,12 +16,10 @@ angular.module('niaApp')
         console.log("loaded!")
         console.log(loadedUsers)
         $rootScope.$apply(function() {
-            // ids = _.pluck(loadedUsers, '_id');
             names = _.pluck(loadedUsers, 'name');
-
-            // users = _.map({loadedUsers, function(userData, key){ return userData.name  })
-            users.push(names)
-            // console.log("._mapped users", users)
+            uniqueNames = _.uniq(names)
+            users.push(uniqueNames)
+            console.log("._mapped users", users)
         });
     });
       
