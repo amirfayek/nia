@@ -18,12 +18,12 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-<<<<<<< HEAD
+
 
   require('../api/chat/chat.socket').register(socket);
-=======
+
   require('../api/toprental/toprental.socket').register(socket);
->>>>>>> ba31cd196eb050d90935ebf93f8085fdcf327fd1
+
   require('../api/movie/movie.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }
