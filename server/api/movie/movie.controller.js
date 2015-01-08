@@ -37,18 +37,40 @@ exports.index = function(req, res) {
 
 // Get a single movie
 exports.show = function(req, res) {
-  console.log(req.params.id)
+  var movieInfo = ''
+  var movieBasicInfo = canistreamit.searchByTitle(req.params.id)
+    .then(function(data){
+      console.log(data);
+      movieInfo += data;
+      console.log("HI")
+      var dataID = JSON.parse(data)[0]._id;
+      console.log("BYE")
+      return dataID;
+  }).then(function(id){
+    return canistreamit.searchByID(id)
+  }).then(function(data){
+      console.log(data);
+      movieInfo += data;
+  }).done(function() {
+    res.json(movieInfo);
+  });
 
-  var movieNameHost = 'http://www.canistream.it/services/search?movieName=' + req.params.id;
-  // var movie
-  console.log(movieNameHost);
-  request(movieNameHost).pipe(res);
-
+  // console.log(movie)
+  // console.log(movie['year'])
+  // var streaming_info = 
   // Movie.findById(req.params.id, function (err, movie) {
   //   if(err) { return handleError(res, err); }
   //   if(!movie) { return res.send(404); }
   //   return res.json(movie);
   // });
+};
+
+
+exports.showMore = function(req, res) {
+  var movieStreamingInfo = canistreamit.searchByID(req.params.id)
+    .then(function(data){
+      return res.json(data);
+  });
 };
 
 // Creates a new movie in the DB.
