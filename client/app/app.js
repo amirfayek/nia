@@ -12,7 +12,7 @@ angular.module('niaApp', [
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
 
     $locationProvider.html5Mode(true);
