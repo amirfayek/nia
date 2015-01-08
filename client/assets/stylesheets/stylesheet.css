@@ -3,13 +3,20 @@
   Do not delete
 */
 
-
+/*.flex-viewport {
+  overflow: shown;
+}
+*/
 /* Header on home page */
 .header-home h1 {
   font-color: white !important;
   font-family: 'Poiret One';
   font-weight: 300;
   font-size: 30px;
+}
+
+.grey-back {
+  background-color: #d8d8d8;
 }
 
 .text-logo h3 {
@@ -19,8 +26,27 @@
   font-size: 20px;
 }
 
+.header-home-h5 {
+  position: absolute;
+}
+
+.grey-back img {
+  margin-left: 4%;
+}
+
+.home-div-lg h2, h4, h6 {
+  margin-left: 5%;
+  line-height: 30px;
+}
+
+.home-div-lg h6 {
+  color: #B9090B;
+  font-size: 15px;
+}
+
+
 .header-home-h5 h5 {
-  margin-top: 35%;
+  margin-top: -80%;
   color: white !important;
   font-family: 'Poiret One';
   font-weight: 300;
@@ -78,25 +104,28 @@ h4, h5, h3, h2, h1, h6, p {
 
 /* VIDEO TEXT */
 #video {
-  position: fixed;
+  /*position: relative;*/
   top: 0px;
   left: 0px;
-  min-width: 100%;
-  min-height: 100%;
-  height: auto;
+  max-width: 100%;
+ /* min-height: 100%;*/
+  height: 400;
   z-index: -1000;
   overflow: hidden;
 }
-
+.white-color {
+  background-color: white;
+}
 .navbar-custom {
   background-color: #fff;
   color: black;
 }
 
-/*.home-div-lg {
+.home-div-lg {
   height: 10%;
-  position: absolute;
-}*/
+  position: relative;
+  z-index: 100;
+}
 
 /* Video End */
 
@@ -130,11 +159,6 @@ h4, h5, h3, h2, h1, h6, p {
 }
 
 
-/* Movie Quiz Design */
-
-
-
-
 /* Extra Button Styling */
 /* We're still using foundation for buttons */
 .button-main-div {
@@ -150,3 +174,12 @@ h4, h5, h3, h2, h1, h6, p {
 .header-h2 h2 {
   font-color: black;
 }
+
+
+
+
+
+
+
+
+
