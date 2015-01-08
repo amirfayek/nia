@@ -33,10 +33,22 @@ exports.index = function(req, res) {
 
 // Get a single movie
 exports.show = function(req, res) {
-  var id;
+  var movieInfo = {}
   var movieBasicInfo = canistreamit.searchByTitle(req.params.id)
     .then(function(data){
-      return res.json(data);
+      console.log(data);
+      movieInfo = data;
+      console.log("HI")
+      var dataID = JSON.parse(data)[0]._id;
+      console.log("BYE")
+      return dataID;
+  }).then(function(id){
+    return canistreamit.searchByID(id)
+  }).then(function(data){
+      console.log(data);
+      movieInfo = data;
+  }).done(function() {
+    res.json(movieInfo);
   });
 
   // console.log(movie)
