@@ -3,7 +3,7 @@
  */
 
 'use strict';
-var User = require('../user/user.model')
+// var User = require('../user/user.model')
 var Chat = require('./chat.model');
 var io = require('socket.io').listen(8000);
 
@@ -12,22 +12,29 @@ var messages = [];
 
 
 io.sockets.on('connection', function (socket) {
-  socket.on('sign-in', function (name) {
-    socket.emit('load', users, messages);
-    io.sockets.emit('signed-in', name);
 
-    users.push(name);
-  });
 
   socket.on('say', function (message) {
-    messages.push(message);
+      // console.log("socket.on('say')")
+      messages.push(message);
+      // console.log("socket_id:", socket.id)
+      io.sockets.emit('said', message);
+  });
 
-    io.sockets.emit('said', message);
+  socket.on('loadusers', function (user) {
+    // console.log("load!")
+    // console.log(user)
+    users.push(user);
+    // console.log(users)
+    io.sockets.emit('loaded', user)
+  });
+  
+  socket.on('disconnect', function(){  
   });
 });
 
+
 console.log('Listening on port 8000...')
-console.log(User.db)
 
 exports.register = function(socket) {
   Chat.schema.post('save', function (doc) {
