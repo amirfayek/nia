@@ -8,6 +8,10 @@ angular.module('niaApp')
 
     $http.get(uri).
       success(function(data, status, headers, config) {
+
+
+        console.log(data)
+
         $scope.movies = data;
       }).
       error(function(data, status, headers, config) {

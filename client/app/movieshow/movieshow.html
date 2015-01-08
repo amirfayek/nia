@@ -1,10 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
   <div ng-repeat="movie in movies">
 
-
-<!-- check here: http://localhost:9000/movieshow?moviename=small%20soldiers
- -->
     <div class="col-md-3 col-md-offset-2"><br><br><br>
       <img src="{{movie.image}}">
        <br><br>
@@ -14,9 +10,8 @@
       <h2>{{movie.title}}</h2>
       <h3>{{movie.year}}</h3>
       <h5><strong>Rating: </strong>{{movie.rating}}</h5>
-      <h5><strong>Length: </strong>110 minutes </h5>
       <h5><strong>Starring: </strong>{{movie.actors}} </h5>
-      <p><strong>Description: </strong></p><br>
+      <p><strong>Description: </strong>{{movie.description}}</p><br>
 
       <center>
         <button type="button" class="btn btn-default btn-md">
@@ -34,7 +29,6 @@
             <img src="../assets/images/hulu.png" width="30" width="30"/>
             <img src="../assets/images/hulu-g.png" width="30" />
         </a>
-
 
         <a class="hover-show" href="#">
             <img src="../assets/images/itunes.png" width="30"/>
