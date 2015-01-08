@@ -3,7 +3,7 @@
 angular.module('niaApp')
   .controller('MoviegeniusCtrl', function ($scope, $http, $routeParams) {
 
-    var movieList = ["Vertigo", "Batman Begins", "Battle Royale", "The Simpsons", "A Beautiful Mind", "Harry Potter", "The Room"];
+    var movieList = ["Vertigo", "Top Gun", "Demolition Man", "Batman Begins", "Battle Royale", "The Simpsons", "A Beautiful Mind", "Harry Potter", "The Room", "Sisterhood of the Traveling Pants", "The Rock", "The Hobbit"];
     function getInt(min, max) {
       return Math.floor(Math.random() * (max-min)) + min;
     };
