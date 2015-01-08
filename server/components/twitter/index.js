@@ -2,6 +2,13 @@ var https = require('https');
 var querystring = require('querystring');
 var Q = require('q');
 
+var client = new Twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
+
 module.exports = function(twitterOptions) {
   
   // invisible outside of this module
@@ -9,7 +16,7 @@ module.exports = function(twitterOptions) {
   var accessToken;
 
   // invisible outside of this module
-  // only makes a twitter api request once - subsequent calls return value of accessToken
+  // makes a twitter api request once - subsequent calls return value of accessToken
   function getAccessToken(cb) {
     if (accessToken) return cb(accessToken);
     
