@@ -15,6 +15,8 @@
   });
 </script>
 
+
+
 <div ng-include="'components/navbar/navbar.html'"></div>
   <h5>Featured Movies</h5>
   <div class="flexslider">
@@ -25,8 +27,12 @@
       <li><a href="/movieshow?moviename=justin bieber"><img src="http://i.huffpost.com/gen/1460864/thumbs/o-JUSTIN-BIEBER-BELIEVE-facebook.jpg"></a></li>
     </ul>
   </div>
+<style>
 
-<!-- <div ng-controller="MovieCtrl">
+
+
+/*
+ <div ng-controller="MovieCtrl">
 <h1> TEST</h1>
   <flex-slider flex-slide="movie in movies track by $index">
     <li>
@@ -34,18 +40,16 @@
     </li>
   </flex-slider>
 </div>
- -->
 
-<div ng-controller="MovieCtrl">
+
 <h1> TEST</h1>
   <ul ng-repeat="movie in movies">
     <li>
-      <a href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}" height="50" width="50"></a>
+      <a href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
     </li>
   </ul>
 </div>
 
-<!--
 <h5>Favorite Movies</h5>
   <div class="flexslider">
     <ul class="slides" ng-controller="MovieCtrl">
@@ -54,31 +58,26 @@
           <img src="{{movie.posters.detailed}}"></a>
       </li>
     </ul>
-</div> -->
-
-<!--
+</div>
   <h5>Top Rentals</h5>
-  <div class="flexslider"> -->
-<!--   <ul class="slides" ng-controller="MovieCtrl">
+  <div class="flexslider">
+  <ul class="slides" ng-controller="MovieCtrl">
     <li ng-repeat="movie in topRentals" id="{{movie.title}}">
       <a href="/movieshow?moviename={{movie.title}}">
         <img src="{{movie.posters.detailed}}"></a>
      </li>
-  </ul> -->
+  </ul>
 
-
-<!-- </div> -->
-
-
-<!-- <div ng-controller="MovieCtrl">
+ </div>
+ <div ng-controller="MovieCtrl">
     <ul>
         <li ng-repeat="movie in movies"><img src="{{movie.posters.thumbnail}}"></li>
     </ul>
     <ul ng-repeat="artist in artists" ng-show="isVisible(artist.name)">
         <li ng-repeat="album in artist.albums">{{album.title}}</li>
     </ul>
-</div> -->
-
+</div>
+*/
 
 <div ng-include="'components/footer/footer.html'"></div>
 
