@@ -6,7 +6,8 @@ angular.module('niaApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-flexslider'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
