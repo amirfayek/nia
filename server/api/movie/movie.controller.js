@@ -6,7 +6,11 @@ var underscore = require('underscore');
 // var Movie = require('./movie.model');
 
 var Movie = require('./movie.model');
+
+
+
 var canistreamit = require('../../components/canistreamit')
+
 var request = require('request');
 var rottenTomatoes = require('../../components/rottentomatoes')
 

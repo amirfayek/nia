@@ -20,7 +20,3 @@ angular.module('niaApp')
         console.log("Unexpected error!")
       })
   });
-
-
-
-
