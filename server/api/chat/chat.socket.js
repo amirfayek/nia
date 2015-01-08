@@ -15,17 +15,18 @@ io.sockets.on('connection', function (socket) {
 
 
   socket.on('say', function (message) {
-      console.log("socket.on('say')")
+      // console.log("socket.on('say')")
       messages.push(message);
+      // console.log("socket_id:", socket.id)
       io.sockets.emit('said', message);
   });
 
   socket.on('loadusers', function (user) {
-    console.log("load!")
-    console.log(user)
+    // console.log("load!")
+    // console.log(user)
     users.push(user);
-    console.log(users)
-    io.sockets.emit('loaded', users)
+    // console.log(users)
+    io.sockets.emit('loaded', user)
   });
   
   socket.on('disconnect', function(){  

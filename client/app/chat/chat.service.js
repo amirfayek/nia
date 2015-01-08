@@ -12,21 +12,33 @@ angular.module('niaApp')
 		    messages.push(message);
 		});
     })
-    socket.on('loaded', function (loadedUsers) {
+    socket.on('loaded', function (loadedUser) {
         console.log("loaded!")
-        console.log(loadedUsers)
         $rootScope.$apply(function() {
-            names = _.pluck(loadedUsers, 'name');
-            uniqueNames = _.uniq(names)
-            users.push(uniqueNames)
-            console.log("._mapped users", users)
+            // names = _.pluck(loadedUsers, 'name');
+            // ids = _.pluck(loadedUsers, '_id');
+            // uniqueNames = _.uniq(loadedUsers).filter(function(e){return e});
+            // console.log("uniqueNames:", uniqueNames);
+            
+            users.push(loadedUser)
+            // users.push(uniqueNames);
+            
+        });
+    });
+
+    socket.on('dced', function (dcedUser) {
+        $rootScope.$apply(function() {
+            users = $.grep(data, function(e){ 
+                return e._id != dcedUser._id; 
+            });
+
+            
         });
     });
       
-    console.log("users before return:", users)
     return {
     	say: function(message) {
-    		socket.emit('say', user.name + ':' + message);
+    		socket.emit('say', user.name + ': ' + message);
     	},
         loadUsers: function() {
             console.log("*loadUsers function*", user)
