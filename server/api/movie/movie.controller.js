@@ -2,17 +2,12 @@
 
 var _ = require('lodash');
 var underscore = require('underscore');
-
 // var Movie = require('./movie.model');
-
 var Movie = require('./movie.model');
-
-
-
-var canistreamit = require('../../components/canistreamit')
-
+var canistreamit = require('../../components/canistreamit');
 var request = require('request');
-var rottenTomatoes = require('../../components/rottentomatoes')
+var rottenTomatoes = require('../../components/rottentomatoes');
+var url = require('url');
 
 exports.index = function(req, res) {
   request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r').pipe(res)
@@ -38,24 +33,32 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   var movieTitle = req.params.id;
   var movieInfo = {};
+  var rottenTomatoesURL;
+  var rottenTomatoesTitle;
+  var regex = /.*m\/(.+)\//;
 
   var movieBasicInfo =
-    canistreamit.searchByTitle(req.params.id)
+    canistreamit.searchByTitle(movieTitle)
       .then(function(data) {
         movieInfo = JSON.parse(data)[0];
         var dataID = movieInfo._id;
         return dataID;
     }).then(function(id) {
+        rottenTomatoesURL = movieInfo.links.rottentomatoes;
+        rottenTomatoesTitle = regex.exec(rottenTomatoesURL)[1].replace(/_/g, " ");
         return canistreamit.searchByID(id)
     }).then(function(data) {
         movieInfo = underscore.extend(movieInfo, JSON.parse(data));
-        console.log("PART TWO");
-        console.log(data);
-        return data;
+        return rottenTomatoesTitle;
+    }).then(function(rottenTomatoesTitle) {
+        return rottenTomatoes.searchByTitle(rottenTomatoesTitle)
+    }).then(function(data) {
+        movieInfo = underscore.extend(movieInfo, JSON.parse(data));
     }).done(function() {
         return res.json(movieInfo);
     });
 };
+
 
 
 exports.showMore = function(req, res) {

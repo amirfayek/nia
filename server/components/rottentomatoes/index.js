@@ -31,25 +31,43 @@ var module = module.exports = {
     });
   },
 
-  // searchByTitle: function(movieName) {
-  //     var data = Q.defer();
-  //     var options = {
-  //       uri: 'http://api.rottentomatoes.com/api/public/v1.0/movies/',
-  //       method: 'GET'
-  //     }
+  searchByID: function(rottenTomatoesID) {
+      var data = Q.defer();
+      var options = {
+        uri: 'http://api.rottentomatoes.com/api/public/v1.0/movies/' + rottenTomatoesID + '.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET,
+        method: 'GET'
+      }
 
-  //     request(options, function(err, response, body) {
-  //       if (err) {
-  //         var error = new Error('Something went wrong trying to get canistreamit data');
-  //         error.innerError = err;
-  //         throw error;
-  //       }
+      request(options, function(err, response, body) {
+        if (err) {
+          var error = new Error('Something went wrong trying to get canistreamit data');
+          error.innerError = err;
+          throw error;
+        }
+        data.resolve(body);
+      });
+      return data.promise;
+    },
 
-  //       data.resolve(body);
-  //     });
+  searchByTitle: function(rottenTomatoesTitle) {
+    var data = Q.defer();
+    var options = {
+      uri: 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET + '&q=' + rottenTomatoesTitle + '&page_limit=1',
+      method: 'GET'
+    }
 
-  //     return data.promise;
-  //   },
+    request(options, function(err, response, body) {
+      if (err) {
+        var error = new Error('Something went wrong trying to get canistreamit data');
+        error.innerError = err;
+        throw error;
+      }
+
+      data.resolve(body);
+    });
+
+    return data.promise;
+  }
 
 
 };
