@@ -12,43 +12,19 @@
   <div ng-repeat="movie in movies">
     <div class="col-md-3 col-md-offset-2"><br>
        <img src="{{movie.image}}"><br><br>
-     </div>
+               <button type="button" class="btn btn-default btn-md">
+           <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite</button><br><br>
+          <h5><strong>Availability:</strong></h5>
 
-    <div class="col-md-6"><br><br><br><br>
-      <h2>{{movie.title}}</h2>
-      <h3>{{movie.year}}</h3>
-      <h5><strong>Rating: </strong>{{movie.rating}}</h5>
-      <h5><strong>Starring: </strong>{{movie.actors}} </h5>
-      <p><strong>Description: </strong>{{movie.description}}</p><br>
-
-
-      <center>
-        <button type="button" class="btn btn-default btn-md">
-           <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite
-        </button>
-            <br><br>
-        <h5><strong>Availability:</strong></h5>
-
-        <a class="hover-show" ng-href="{{movie.netflix_instant.direct_url}}">
+        <a class="hover-show" ng-show="movie.netflix_instant != null" ng-href="{{movie.netflix_instant.direct_url}}">
             <img src="../assets/images/netflix.png" width="30"/>
             <img src="../assets/images/netflix-g.png" width="30" />
         </a>
 
-        <a class="hover-show" ng-href="{{movie.links.rottentomatoes}}">
-          <img src="../assets/images/fresh.png" width="30"/>
-          <img src="../assets/images/fresh-g.png" width="30"/>
-        </a>
-
-         <a class="hover-show" ng-href="{{movie.links.imdb}}">
-          <img src="../assets/images/imdb.png" width="30"/>
-          <img src="../assets/images/imdb-g.png" width="30"/>
-        </a>
-
-        <a class="hover-show" ng-href="{{movie.amazon_prime_instant_video.direct_url}}">
+        <a class="hover-show" ng-show="movie.amazon_prime_instant_video != null" ng-href="{{movie.amazon_prime_instant_video.direct_url}}">
             <img src="../assets/images/amazon.png" width="30"/>
             <img src="../assets/images/amazon-g.png" width="30"/>
         </a>
-
 
         <a class="hover-show" ng-href="{{movie.hulu_instant.direct_url}}">
             <img src="../assets/images/hulu.png" width="30" width="30"/>
@@ -59,8 +35,34 @@
             <img src="../assets/images/itunes.png" width="30"/>
             <img src="../assets/images/itunes-g.png" width="30"/>
         </a>
-         <br><br><br>
-        </center>
+        <br>
+        <h5><strong>More Information:</strong></h5>
+
+        <a class="hover-show" ng-href="{{movie.links.rottentomatoes}}">
+          <img src="../assets/images/fresh.png" width="30"/>
+          <img src="../assets/images/fresh-g.png" width="30"/>
+        </a>
+
+         <a class="hover-show" ng-href="{{movie.links.imdb}}">
+          <img src="../assets/images/imdb.png" width="30"/>
+          <img src="../assets/images/imdb-g.png" width="30"/>
+        </a><br><br>
+
+
+     </div>
+
+    <div class="col-md-6"><br><br><br><br>
+      <h2>{{movie.title}}</h2>
+      <h3>{{movie.year}}</h3>
+      <h5><strong>Rating: </strong>{{movie.rating}}</h5>
+      <h5><strong>MPAA Rating: </strong>{{movie.movies[0].mpaa_rating}}</h5>
+      <!-- <h5><strong>Critics Score: </strong>{{movie.ratings[0].critics_rating}}</h5> -->
+      <h5><strong>Theater Release:</strong> {{movie.movies[0].release_dates.theater}}</h5>
+      <h5><strong>DVD Release:</strong> {{movie.movies[0].release_dates.dvd}}</h5>
+      <h5><strong>Runtime: </strong>{{movie.movies[0].runtime}} minutes</h5>
+      <h5><strong>Starring: </strong>{{movie.actors}} </h5>
+      <p><strong>Description: </strong>{{movie.description}}</p>
+
    </div>
   </div>
 </div>
