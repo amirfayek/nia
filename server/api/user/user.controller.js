@@ -58,6 +58,11 @@ exports.destroy = function(req, res) {
   });
 };
 
+
+
+exports.addToFavorites = function(req, res, next) {
+  var userId = req.user_id;
+}
 /**
  * Change a users password
  */
