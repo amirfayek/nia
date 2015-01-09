@@ -48,7 +48,8 @@
       <h3>{{movie.year}}</h3>
       <h5><strong>Rating: </strong>{{movie.rating}}</h5>
       <h5><strong>MPAA Rating: </strong>{{movie.movies[0].mpaa_rating}}</h5>
-      <!-- <h5><strong>Critics Score: </strong>{{movie.ratings[0].critics_rating}}</h5> -->
+      <h5><strong>Critics Score: </strong>{{movie.movies[0].ratings.critics_score}}</h5>
+      <h5><strong>Audience Score: </strong>{{movie.movies[0].ratings.audience_score}}</h5>
 
       <h5><strong>Theater Release:</strong> {{movie.movies[0].release_dates.theater}}</h5>
       <h5><strong>DVD Release:</strong> {{movie.movies[0].release_dates.dvd}}</h5>
