@@ -10,7 +10,7 @@ var rottenTomatoes = require('../../components/rottentomatoes');
 var url = require('url');
 
 exports.index = function(req, res) {
-  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r').pipe(res)
+  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET).pipe(res)
 };
 
 // Get list of movies
