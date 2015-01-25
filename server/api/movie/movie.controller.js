@@ -1,51 +1,46 @@
 'use strict';
 
-var _ = require('lodash');
-var underscore = require('underscore');
-// var Movie = require('./movie.model');
-var Movie = require('./movie.model');
-var canistreamit = require('../../components/canistreamit');
-var request = require('request');
-var rottenTomatoes = require('../../components/rottentomatoes');
-var url = require('url');
+// Third party modules
+var underscore  = require('underscore'),
+        request = require('request'),
+              _ = require('lodash');
+
+// Models
+var Movie          = require('./movie.model');
+
+// Custom modules
+var rottenTomatoes = require('../../components/rottentomatoes'),
+      canistreamit = require('../../components/canistreamit');
 
 exports.index = function(req, res) {
-  request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET).pipe(res)
+  // request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET).pipe(res)
+  rottenTomatoes.topMovies()
+    .done(function(data) {
+      return res.json(data);
+    })
 };
-
-// Get list of movies
-// exports.index = function(req, res) {
-//   Movie.find(function (err, movies) {
-//     if(err) { return handleError(res, err); }
-//     return res.json(200, movies);
-//   });
-// };
-
-// Get list of movies
-// exports.index = function(req, res) {
-//   request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r', function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       var movie = JSON.parse(body)
-//     }
-//   }).pipe('/api/movies')
-// };
 
 exports.show = function(req, res) {
   var movieTitle = req.params.id;
   var movieInfo = {};
+  var rotten_tomatoes = {};
   var rottenTomatoesURL;
   var rottenTomatoesTitle;
   var regex = /.*m\/(.+)\//;
 
   var movieBasicInfo =
+    // Get basic movie information from canistreamit
     canistreamit.searchByTitle(movieTitle)
       .then(function(data) {
         movieInfo = JSON.parse(data)[0];
+        // Store canistreamit id to access streaming information
         var dataID = movieInfo._id;
         return dataID;
     }).then(function(id) {
         rottenTomatoesURL = movieInfo.links.rottentomatoes;
+        // Store rotten tomatoes title from url
         rottenTomatoesTitle = regex.exec(rottenTomatoesURL)[1].replace(/_/g, " ");
+        // Get canistreamit streaming information using data we stored
         return canistreamit.searchByID(id)
     }).then(function(data) {
         movieInfo = underscore.extend(movieInfo, JSON.parse(data));
@@ -53,19 +48,11 @@ exports.show = function(req, res) {
     }).then(function(rottenTomatoesTitle) {
         return rottenTomatoes.searchByTitle(rottenTomatoesTitle)
     }).then(function(data) {
+        rotten_tomatoes.
         movieInfo = underscore.extend(movieInfo, JSON.parse(data));
     }).done(function() {
         return res.json(movieInfo);
     });
-};
-
-
-
-exports.showMore = function(req, res) {
-  var movieStreamingInfo = canistreamit.searchByID(req.params.id)
-    .then(function(data){
-      return res.json(data);
-  });
 };
 
 // Creates a new movie in the DB.
