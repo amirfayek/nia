@@ -379,7 +379,7 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'git@heroku.com:murmuring-bastion-9001.git',
+          remote: 'heroku',
           branch: 'master'
         }
       },

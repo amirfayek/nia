@@ -34,6 +34,7 @@ var all = {
 
   // MongoDB connection options
   mongo: {
+    uri: process.env.MONGOLAB_URI,
     options: {
       db: {
         safe: true
