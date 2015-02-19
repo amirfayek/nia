@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('niaApp').controller('MovieshowCtrl', function ($scope, $http, $routeParams, User) {
-  var movieName = $routeParams.moviename.toLowerCase();
+angular.module('niaApp').controller('MovieShowCtrl', function ($scope, $http, $routeParams, User) {
+  var movieName = $routeParams.id.toLowerCase();
   var uri = '/api/movies/' + movieName;
 
   $http.get(uri).
@@ -15,7 +15,8 @@ angular.module('niaApp').controller('MovieshowCtrl', function ($scope, $http, $r
 
   $scope.addFavorite = function(movie) {
     console.log("add");
-    movie.favorites.users.push()
+    console.log(req.user._id);
+    // movie.favorites.users.push(User);
   }
 
 });
