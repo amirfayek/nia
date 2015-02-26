@@ -11,7 +11,7 @@ angular.module('niaApp')
     var randomMovie = movieList[randomNum];
 
 
-    $http.get('http://localhost:9000/api/movies/' + randomMovie).
+    $http.get('/api/movies/' + randomMovie).
       success(function(data, status, headers, config) {
         console.log(data)
         $scope.movies = [data];

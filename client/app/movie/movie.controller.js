@@ -12,6 +12,7 @@ angular.module('niaApp')
         return true;
       };
     });
+    
     $http.get('/api/toprentals').success(function(data) {
       $scope.topRentals = [];
       angular.forEach(data.movies, function(value, key) {
