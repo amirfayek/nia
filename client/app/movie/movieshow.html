@@ -19,7 +19,7 @@
             <img src="../assets/images/amazon-g.png" width="30"/>
         </a>
 
-        <a class="hover-show" ng-href="{{movie.hulu_instant.direct_url}}">
+        <a class="hover-show" ng-show="movie.hulu_movies.direct_url != null" ng-href="{{movie.hulu_movies.direct_url}}"}}">
             <img src="../assets/images/hulu.png" width="30" width="30"/>
             <img src="../assets/images/hulu-g.png" width="30" />
         </a>

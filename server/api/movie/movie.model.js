@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    User = require('../user/user.model');
 
 var MovieSchema = new Schema({
   _id: String,
@@ -15,7 +16,7 @@ var MovieSchema = new Schema({
   active: Boolean,
   date: [{ type: Date, default: Date.now}],
   meta: {
-    favorites: Number
+    favorites: [ {type : mongoose.Schema.ObjectId, ref : 'User'} ]
   }
 });
 

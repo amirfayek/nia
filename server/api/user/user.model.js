@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var _ = require('lodash');
+var Movie = require('../movie/movie.model');
 
 var UserSchema = new Schema({
   name: String,
@@ -20,7 +22,7 @@ var UserSchema = new Schema({
   google: {},
   github: {},
 
-  favorites: [{ name: String }]
+  favorites: [ {type : mongoose.Schema.ObjectId, ref : 'Movie'} ]
 });
 
 /**
@@ -145,6 +147,12 @@ UserSchema.methods = {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+  },
+
+  isFavoriteMovie: function(movie) {
+    if (_.includes([this.favorites], movie)) {
+      return true;
+    }
   }
 };
 
