@@ -32,6 +32,7 @@ exports.index = function(req, res) {
 
 exports.show = function(req, res) {
   var movieTitle = req.params.id;
+  // Collect movie information here before creating movie object
   var movieInfo = {};
   var rottenTomatoesURL;
   var rottenTomatoesTitle;
@@ -41,8 +42,8 @@ exports.show = function(req, res) {
     canistreamit.searchByTitle(movieTitle)
       .then(function(data) {
         movieInfo = JSON.parse(data)[0];
-        var dataID = movieInfo._id;
-        return dataID;
+        movieInfo._id = movieInfo._id;
+        return movieInfo._id;
     }).then(function(id) {
         rottenTomatoesURL = movieInfo.links.rottentomatoes;
         rottenTomatoesTitle = regex.exec(rottenTomatoesURL)[1].replace(/_/g, " ");
@@ -55,6 +56,7 @@ exports.show = function(req, res) {
     }).then(function(data) {
         movieInfo = underscore.extend(movieInfo, JSON.parse(data));
     }).done(function() {
+        console.log(movieInfo);
         return res.json(movieInfo);
     });
 };
