@@ -49,7 +49,7 @@
   <ul ng-repeat="movie in movies">
     <center>
     <li class="li-popover">
-      <a ng-href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
+      <a ng-href="/movie/{{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
     </li>
   </center>
   </ul>
@@ -59,7 +59,7 @@
   <ul ng-repeat="movie in topRentals">
     <center>
     <li class="li-popover">
-      <a ng-href="/movieshow?moviename={{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
+      <a ng-href="/movie/{{movie.title}}"><img ng-src="{{movie.posters.detailed}}"></a>
     </li>
   </center>
   </ul>
