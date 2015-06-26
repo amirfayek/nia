@@ -15,7 +15,6 @@ module.exports = {
           movieArray.push(movie[key])
         }
         return movieArray
-        console.log(movieArray)
       }
     });
   },
@@ -24,11 +23,13 @@ module.exports = {
     request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=n98uq7kqyp3xc9hw3tq6hn6r', function (error, response, body) {
       if (!error && response.statusCode === 200) {
         var movie = JSON.parse(body)
-        // for (var key in movie) {
-          // console.log(movie[key])
-        // }
       }
     });
+  },
+
+  extractTitleFromURL: function(url) {
+      var regex = /.*m\/(.+)\//;
+      return regex.exec(url)[1].replace(/_/g, " ");
   },
 
   searchByID: function(rottenTomatoesID) {
