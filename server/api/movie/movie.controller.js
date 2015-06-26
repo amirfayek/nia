@@ -2,12 +2,11 @@
 
 var _ = require('lodash');
 var underscore = require('underscore');
-// var Movie = require('./movie.model');
-var Movie = require('./movie.model');
-var canistreamit = require('../../components/canistreamit');
 var request = require('request');
-var rottenTomatoes = require('../../components/rottentomatoes');
 var url = require('url');
+var Movie = require('./movie.model');
+var rottenTomatoes = require('../../components/rottentomatoes');
+var canistreamit = require('../../components/canistreamit');
 
 exports.index = function(req, res) {
   request('http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?apikey=' + process.env.ROTTEN_TOMATOES_SECRET).pipe(res)
@@ -31,33 +30,59 @@ exports.index = function(req, res) {
 // };
 
 exports.show = function(req, res) {
-  var movieTitle = req.params.id;
+  var movieTitle = req.params.id;  
   // Collect movie information here before creating movie object
-  var movieInfo = {};
-  var rottenTomatoesURL;
-  var rottenTomatoesTitle;
-  var regex = /.*m\/(.+)\//;
-
-  var movieBasicInfo =
+  var movieParams = {};
+  var movieBasicInfo =  
+    // CanIStreamIt Query #1
     canistreamit.searchByTitle(movieTitle)
       .then(function(data) {
-        movieInfo = JSON.parse(data)[0];
-        movieInfo._id = movieInfo._id;
-        return movieInfo._id;
+        data = JSON.parse(data)[0]; 
+        movieParams.title = data.title;
+        movieParams.year = data.year;
+        movieParams.description = data.description;
+        movieParams.image = data.image;
+        movieParams.cast = data.actors.split(',');
+        movieParams.providers = {};
+        movieParams.providers.rottenTomatoes = {};
+        movieParams.providers.imdb = {};
+        movieParams.providers.canIStreamIt = {};
+        movieParams.providers.canIStreamIt.id = data._id;
+        movieParams.providers.canIStreamIt.url = data.links.shortUrl;
+        movieParams.providers.rottenTomatoes.title = rottenTomatoes.extractTitleFromURL(data.links.rottentomatoes);
+        movieParams.providers.rottenTomatoes.url = data.links.rottentomatoes;
+        movieParams.providers.imdb.url = data.links.imdb;
+        return movieParams.providers.canIStreamIt.id;
+    
+    // CanIStreamIt Query #2
+    // Use CanIStreamIt id to query for streaming information
     }).then(function(id) {
-        rottenTomatoesURL = movieInfo.links.rottentomatoes;
-        rottenTomatoesTitle = regex.exec(rottenTomatoesURL)[1].replace(/_/g, " ");
-        return canistreamit.searchByID(id)
+        return canistreamit.searchByID(id)    
     }).then(function(data) {
-        movieInfo = underscore.extend(movieInfo, JSON.parse(data));
-        return rottenTomatoesTitle;
+        var data = JSON.parse(data);
+        movieParams.providers.netflix = {}
+        movieParams.providers.netflix.id = data.netflix_instant.external_id;        
+        movieParams.providers.netflix.url = data.netflix_instant.direct_url;
+        movieParams.providers.netflix.price = data.netflix_instant.price;
+        return movieParams.providers.rottenTomatoes.title;
+    
+    // Get information from Rotten Tomatoes API
     }).then(function(rottenTomatoesTitle) {
         return rottenTomatoes.searchByTitle(rottenTomatoesTitle)
     }).then(function(data) {
-        movieInfo = underscore.extend(movieInfo, JSON.parse(data));
+        data = JSON.parse(data);
+        movieParams.year = data.movies[0].year;
+        movieParams.runtime = data.movies[0].runtime;
+        movieParams.mpaaRating = data.movies[0].mpaa_rating;
+        movieParams.releaseDates = {};
+        movieParams.releaseDates.theater = data.movies[0].release_dates.theater;
+        movieParams.releaseDates.dvd = data.movies[0].release_dates.dvd;
+        movieParams.providers.rottenTomatoes.ratings = {}
+        movieParams.providers.rottenTomatoes.ratings.critics = data.movies[0].ratings.critics_score;
+        movieParams.providers.rottenTomatoes.ratings.audience = data.movies[0].ratings.audience_score;
+
     }).done(function() {
-        console.log(movieInfo);
-        return res.json(movieInfo);
+        return res.json(movieParams);
     });
 };
 
