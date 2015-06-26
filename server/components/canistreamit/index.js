@@ -26,10 +26,14 @@ module.exports = {
 
   searchByID: function(id) {
     var data = Q.defer();
+    var mediaTypes = ["streaming", "rental", "purchase", "dvd", "xfinity"];
+
     var options = {
-      uri: 'http://www.canistream.it/services/query?movieId=' + id + '&attributes=1&mediaType=streaming',
+      uri: 'http://www.canistream.it/services/query?movieId=' + id + '&attributes=1&mediaType=' + mediaTypes[0],
       method: 'GET'
     }
+
+    console.log(options.uri);
 
     request(options, function(err, response, body) {
       if (err) {
