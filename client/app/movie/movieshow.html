@@ -9,11 +9,11 @@
         <img src="{{movie.image}}">
         <br><br>
 
-        <button ng-click="addFavorite(movie)" type="button" class="btn btn-default btn-md">
+        <button ng-click="toggleFavorite(movie)" type="button" class="btn btn-default btn-md">
          <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite</button><br><br>
          <h5><strong>Availability:</strong></h5>
 
-         <a class="hover-show" ng-show="movie.netflix_instant != null" ng-href="{{movie.netflix_instant.direct_url}}">
+         <a class="hover-show" ng-show="movie.providers.netflix != null" ng-href="{{movie.providers.netflix.url}}">
           <img src="../assets/images/netflix.png" width="30"/>
           <img src="../assets/images/netflix-g.png" width="30" />
         </a>
@@ -28,19 +28,19 @@
           <img src="../assets/images/hulu-g.png" width="30" />
         </a>
 
-        <a class="hover-show" ng-href="{{movie.itunes_instant.direct_url}}">
+        <a class="hover-show" ng-show="movie.providers.itunes.url != null" ng-href="{{movie.itunes_instant.direct_url}}">
           <img src="../assets/images/itunes.png" width="30"/>
           <img src="../assets/images/itunes-g.png" width="30"/>
         </a>
         <br>
         <h5><strong>More Information:</strong></h5>
 
-        <a class="hover-show" ng-href="{{movie.links.rottentomatoes}}">
+        <a class="hover-show" ng-href="{{movie.providers.rottenTomatoes.url}}">
           <img src="../assets/images/fresh.png" width="30"/>
           <img src="../assets/images/fresh-g.png" width="30"/>
         </a>
 
-        <a class="hover-show" ng-href="{{movie.links.imdb}}">
+        <a class="hover-show" ng-href="{{movie.providers.imdb.url}}">
           <img src="../assets/images/imdb.png" width="30"/>
           <img src="../assets/images/imdb-g.png" width="30"/>
         </a><br><br>
@@ -48,17 +48,19 @@
       </div>
 
       <div class="col-md-7"><br><br>
-        <h2>{{movie.title}}</h2>
+        <h2>{{movie.title}} <small></small> </h2>
         <h3>{{movie.year}}</h3>
-        <h5><strong>Rating: </strong>{{movie.rating}}</h5>
-        <h5><strong>MPAA Rating: </strong>{{movie.movies[0].mpaa_rating}}</h5>
-        <h5><strong>Critics Score: </strong>{{movie.movies[0].ratings.critics_score}}</h5>
-        <h5><strong>Audience Score: </strong>{{movie.movies[0].ratings.audience_score}}</h5>
-
-        <h5><strong>Theater Release:</strong> {{movie.movies[0].release_dates.theater}}</h5>
-        <h5><strong>DVD Release:</strong> {{movie.movies[0].release_dates.dvd}}</h5>
-        <h5><strong>Runtime: </strong>{{movie.movies[0].runtime}} minutes</h5>
-        <h5><strong>Starring: </strong>{{movie.actors}} </h5>
+        <h5><strong>Runtime: </strong>{{movie.runtime}} minutes</h5>
+        <h5><strong>MPAA Rating: </strong>{{movie.mpaaRating}}</h5>
+        <h5><strong>Theater Release:</strong> {{movie.releaseDates.theater}}</h5>
+        <h5><strong>DVD Release:</strong> {{movie.releaseDates.dvd}}</h5>
+        <h5><strong>RT Critics Score: </strong>{{movie.providers.rottenTomatoes.ratings.critics}}%</h5>
+        <h5><strong>RT Audience Score: </strong>{{movie.providers.rottenTomatoes.ratings.audience}}%</h5>
+        <h5><strong>Starring: </strong>
+        <div ng-repeat="cast in movie.cast">
+          {{cast}}{{$last ? '' : ', '}}
+          </div>
+        </h5>
         <p><strong>Description: </strong>{{movie.description}}</p>
       </div>
     </div>
